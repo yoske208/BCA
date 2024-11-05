@@ -8,3 +8,11 @@
 
 
 }
+.button{
+    background-color: green;
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: solid 0px;
+    border-radius: 2px;
+}
