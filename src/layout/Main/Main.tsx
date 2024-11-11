@@ -1,30 +1,21 @@
-import "./Main.css"
+import { Children, ReactNode } from "react";
+import Users from "../../User/Users";
 
-interface PropsInterface { 
-  changeName : (name:string)  => void
-  name : string
-
+interface Props {
+  children: React.ReactNode
 }
 
-
-const Main = (props:PropsInterface) => {
-  
+const Main = ({children}:Props) => {
   return (
     <>
-    <div className="position" style={{minHeight: "91vh"}}>
-     
-        {props.name}
-      <button className="button" onClick={() => props.changeName("meny")}> change the name</button> 
-       
-        
-        
-   
-
+      <main>
+        {children}
+        {/* <Users /> */}
 
         
-    </div>
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

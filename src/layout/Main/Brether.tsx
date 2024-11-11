@@ -8,7 +8,6 @@ const Brether = (prop : SunName) => {
 
   return (
     <div>
-      <button onClick={() => prop.name}/>
         {prop.name}
     </div>
   )

@@ -1,19 +1,22 @@
-import { useState } from "react"
 import Footer from "./Footer/Footer"
 import Header from "./Header/Header"
-import Brether from "./Main/brether"
 import Main from "./Main/Main"
+// import Users from "./Main/User/Users"
 
-const Layout = () => {
-  const [name, setname] = useState("Nimrod")
+interface Props {
+  children: React.ReactNode
+}
+
+const Layout = ({children} : Props) => {
+  // const [name, setname] = useState("Nimrod")
+  // const [user, setuser] = useState([])
 
   
 
   return (
-    <div>
+    <div className="app-container">
     <Header/>
-    <Brether name={name }/>
-    <Main  changeName={setname} name={name} />
+    <Main children={children}   />
     <Footer/>
       
     </div>

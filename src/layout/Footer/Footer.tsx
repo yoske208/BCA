@@ -1,9 +1,12 @@
 
 const Footer = () => {
   return (
-    <div>
-      Footer
-    </div>
+    <footer>
+      <p>
+        create by yoske &copy; {new Date().getFullYear()}
+      </p>
+    </footer>
+   
   )
 }
 
