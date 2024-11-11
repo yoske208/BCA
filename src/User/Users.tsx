@@ -10,6 +10,7 @@ import Card from "./Card";
 import EditUser from "./EditUser";
 import ErrorPage from "../Pages/ErrorPage";
 import Login from "../Pages/Login";
+import DisplayUsers2 from "./DisplayUsers2";
 
 interface User {
   id?: string;
@@ -22,14 +23,13 @@ interface User {
 const Users = () => {
   const [Users, setUsers] = useState<User[]>([]);
   const [userStars, setUserStars] = useState<User[]>([]);
-  const [user, setuser] = useState<User>()
+  const [user, setuser] = useState<User>();
 
   useEffect(() => {
     fetch("/Data.json")
       .then((respons) => respons.json())
       .then((data) => setUsers(data));
   }, []);
-
 
   const getStars = (starUser: User) => {
     setUserStars([...userStars, starUser]);
@@ -44,51 +44,50 @@ const Users = () => {
     setUsers(Users.filter((user) => user.id !== id));
   };
   const UpdateUser = (updateUser: User) => {
-    setUsers((prevUsers)=>prevUsers.map((user)=>
-      user.id === updateUser.id ? {...user,...updateUser}: user
-    ))}
-   
-    
-  
-  const updateSetUser = (user:User)=> {
-    setuser(user)
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === updateUser.id ? { ...user, ...updateUser } : user
+      )
+    );
+  };
 
-  }
+  const updateSetUser = (user: User) => {
+    setuser(user);
+  };
 
   return (
     <div>
-
-
       <Routes>
-        <Route path="/LOGIN" element={<Login/>} />
-        <Route path="/HOME" element={<Home/>} />
-        <Route path="/ABOUT" element={<About/>} />
-        <Route path="/Card" element={<Card/>} />
-        <Route path="*" element={<ErrorPage/>} />
+        <Route path="/LOGIN" element={<Login />} />
+        <Route path="/HOME" element={<Home />} />
+        <Route path="/ABOUT" element={<About />} />
+        <Route path="/Card" element={<Card />} />
+        <Route path="*" element={<ErrorPage />} />
         {/* <Route path="/edit" element={<EditUser />} /> */}
-        
-        
 
+        <Route path="/add" element={<NewUser addUser={addNewUser} />} />
+        <Route
+          path="/edit/:id"
+          element={<EditUser user={user!} editUser={UpdateUser} />}
+        />
+        <Route path="/" element={<DisplayUsers2/>}/>
 
-        <Route path="/add" element={<NewUser addUser={addNewUser} />}/>
-        <Route path="/edit/:id" element={<EditUser user={user!} editUser={UpdateUser} />}/>
-
-        <Route path="/" element={<DisplayUsers
-            users={Users}
-            addStart={getStars}
-            deleteUser={DeleteUser}
-            updateUser={updateSetUser}
-          />}/>
-          
+        {/* <Route
+          path="/"
+          element={
+            <DisplayUsers
+              users={Users}
+              addStart={getStars}
+              deleteUser={DeleteUser}
+              updateUser={updateSetUser}
+            />
+          }
+        /> */}
 
         <Route>
-        {userStars.length > 0 && <BestUser userStars={userStars} />}
-
+          {userStars.length > 0 && <BestUser userStars={userStars} />}
         </Route>
       </Routes>
-
-
-      
     </div>
   );
 };

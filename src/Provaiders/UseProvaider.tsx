@@ -1,6 +1,7 @@
-import React, { Children, useState,ReactNode } from 'react'
+import React, {  useState,ReactNode, useEffect } from 'react'
 
 interface User {
+    id? : string
     username : string
     age : number
     email : string
@@ -12,10 +13,18 @@ interface Props {
 
 }
 
-const UsersProvaider = React.createContext<User[] | null>(null)
+export const UsersProvaider = React.createContext<User[] | null>(null)
 
 const UserProvaider = ({children}:Props) => {
     const [users, setusers] = useState<User[]>([])
+
+    useEffect(() => {
+      fetch("/Data.json")
+        .then((respons) => respons.json())
+        .then((data) => setusers(data))
+        .catch((error) => console.error("Error fatch",error))
+    }, []);
+
   return (
     <UsersProvaider.Provider value={users}>
         {children}
