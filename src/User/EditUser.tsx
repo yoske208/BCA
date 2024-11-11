@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PageHeader from "../Pages/PageHeader";
 interface User {
   id?: string;
   userName: string;
@@ -41,7 +42,9 @@ export default function EditUser({ editUser, user }: Props) {
 
   return (
     <>
+
       <div>
+        <PageHeader title="edit user" subTitle="page of edit"/>
         <form onSubmit={handleSubmit}>
           <input
             type="text"

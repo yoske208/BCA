@@ -4,12 +4,14 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./Router/AppRouter.tsx";
+import UseProvaider from "./User/Provaiders/UseProvaider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-    {/* <AppRouter/> */}
+    <UseProvaider>
       <App />
+    </UseProvaider>
     </BrowserRouter>
   </StrictMode>
 );

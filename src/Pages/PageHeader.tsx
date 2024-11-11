@@ -11,7 +11,7 @@ const PageHeader = ({subTitle,title}:Props) => {
         <h1>{title}</h1>
         <h2>{subTitle}</h2>
     </div>
-  )
+  ) 
 }
 
 export default PageHeader

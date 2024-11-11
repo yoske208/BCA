@@ -1,35 +1,15 @@
-import React, { useState } from "react";
-import NewUser from "./NewUser";
-import EditUser from "./EditUser";
-import BestUser from "./BestUser";
-import { Link, NavLink } from "react-router-dom";
-import PageHeader from "../Pages/PageHeader";
+import React, { useContext } from 'react'
+import UseProvaider from './Provaiders/UseProvaider'
+import { Link, NavLink } from 'react-router-dom';
+import PageHeader from '../Pages/PageHeader';
+import Users from './Users';
 
-interface User {
-  id?: string;
-  userName: string;
-  email: string;
-  age: number;
-  img: string;
-}
 
-interface Props {
-  users: User[];
-  deleteUser: (id: string) => void;
-  updateUser: (user: User) => void;
-  addStart: (user: User) => void;
-}
-
-export default function DisplayUsers({
-  users,
-  deleteUser,
-  updateUser,
-  addStart,
-}: Props) {
-  // const [flag, setFlag] = useState(false);
-
+const DisplayUsers2 = () => {
+    const {userss} = useContext(UserProvaider())
   return (
     <>
+    <UseProvaider >
     <PageHeader title="user page" subTitle="list of users"/>
       <div className="card-list">
         {users.map((user) => (
@@ -65,6 +45,9 @@ export default function DisplayUsers({
       <Link to={"/users/login"}>
         <button>Login</button>
       </Link>
+      </UseProvaider>
     </>
-  );
+  )
 }
+
+export default DisplayUsers2
